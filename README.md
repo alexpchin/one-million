@@ -7,15 +7,13 @@ The challenge was to write a Ruby script that outputs every number
 from 1 (one) to 1,000,000 (one million), but the output should be in
 words.
 
-## My response
+## My solution
 
-I chose to monkey-patch Fixnum for this exercise, but it would probably be
-better to make this code into a module for use in production.
+I decided to monkey-patch [Fixnum](http://www.ruby-doc.org/core-2.1.5/Fixnum.html) for this challenge.
 
-I used Ruby 2.0 with RSpec for TDD and Guard for continuous testing. To run the
-tests `bundle install` and run `rspec`.
+I used Ruby 2.1.4 with RSpec for TDD and [Guard](https://github.com/guard/guard) for continuous testing. To run the tests `bundle install` and run `rspec`.
 
-To print one to a million in words execute the script provided:
+To execute the script and count to a million in words, use:
 
 ```
 $ ./one_to_a_million

@@ -31,10 +31,13 @@ class Fixnum
   end
 
   # Order of magnitude followed but the magnitude word.
+  # The reason I have monkey-patched Fixnum is so that I can use in_words recursively
+  # E.g. (four thousand) (three hundred) = 2 recursions
   def multiple_of_magnitude_in_words
     [(self / magnitude).in_words, magnitude_word].join(' ')
   end
 
+  # E.g. (four thousand) (three hundred) and (twenty) (two) = 4 recursions
   def long_number_in_words
     magnitude_part_and_remainder.map(&:in_words).join(magnitude_separator)
   end
@@ -45,6 +48,7 @@ class Fixnum
     [magnitude * quotient, remainder]
   end
 
+  # Lookup the magnitude if it is a unique word
   def magnitude_word
     MAGNITUDE[magnitude]
   end

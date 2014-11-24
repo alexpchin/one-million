@@ -1,5 +1,7 @@
 One Million (Code Test)
 ===========
+[![Code Climate](https://codeclimate.com/github/alexpchin/one-million/badges/gpa.svg)](https://codeclimate.com/github/alexpchin/one-million)
+[![Test Coverage](https://codeclimate.com/github/alexpchin/one-million/badges/coverage.svg)](https://codeclimate.com/github/alexpchin/one-million)
 
 ## The challenge
 

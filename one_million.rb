@@ -1,5 +1,7 @@
 class Fixnum
 
+  # Method used to print out words (1..1000000).each { |n| puts n.in_words }
+  # If no value is returned by in_a_word, then 
   def in_words
     in_a_word || in_many_words if know_in_words?
   end
@@ -14,7 +16,7 @@ class Fixnum
 
   private
 
-  IN_A_WORD = {
+  WORDS = {
     1  => "one",
     2  => "two",
     3  => "three",
@@ -50,16 +52,17 @@ class Fixnum
     1000000 => "million"
   }
 
-  def know_in_words?
-    self > 0 && self <= 1000000
-  end
-
+  # 1.in_a_word passes 1 as self to words.
   def in_a_word
-    IN_A_WORD[self]
+    WORDS[self]
   end
 
   def in_many_words
     multiple_of?(magnitude) ? round_number_in_words : long_number_in_words
+  end
+
+  def know_in_words?
+    self > 0 && self <= 1000000
   end
 
   def round_number_in_words

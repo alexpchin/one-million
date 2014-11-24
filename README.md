@@ -1,7 +1,5 @@
-One Million
------------
-
-This code test was set by a London tech company.
+One Million (Code Test)
+===========
 
 ## The challenge
 
@@ -11,17 +9,11 @@ words.
 
 ## My response
 
-I chose to monkey patch Fixnum for this exercise, but it would probably be
+I chose to monkey-patch Fixnum for this exercise, but it would probably be
 better to make this code into a module for use in production.
 
 I used Ruby 2.0 with RSpec for TDD and Guard for continuous testing. To run the
 tests `bundle install` and run `rspec`.
-
-After producing working code I refactored several times to improve readability
-and make the code reusable and extendable.
-
-Then I went even further(!) to demonstrate my understanding of the single
-responsibility principle and a penchant for code as poetry :o)
 
 To print one to a million in words execute the script provided:
 

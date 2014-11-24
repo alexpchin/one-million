@@ -3,4 +3,4 @@
 require_relative 'one_million'
 
 # Print from one to a million in words
-(1..1000000).each { |n| puts n.in_words }
+(1..1000000).each { |n| puts Word.new(n).word }

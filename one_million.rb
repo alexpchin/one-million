@@ -1,15 +1,4 @@
-class Word
-
-  attr_reader :integer, :word, :digits, :magnitude
-
-  def initialize(integer)
-    @integer    = integer                 # 923454
-    @digits     = integer.to_s.length     # 6
-    @magnitude  = order_of_magnitude      # 100000
-    @word       = in_words                # nine hundred and twenty three thousand four hundred and fifty four
-  end
-
-  private
+class Fixnum
 
   # Recursive method to print out word.
   # If the number is in range (1 - 1000000):
@@ -19,44 +8,40 @@ class Word
     in_a_word || in_many_words if in_range?
   end
 
+  def digits
+    self.to_s.length
+  end
+
+  private
+
+  # Check if number is between one and one million.
+  def in_range?
+    self > LOWER_BOUND && self <= UPPER_BOUND
+  end
+
   # If the number is a unique value, take directly from the WORDS hash
   def in_a_word
-    WORDS[integer]
+    WORDS[self]
   end
 
-  # Is the number a multiple of a magnitude?
+  # Check if the number is round a multiple of a magnitude
+  # If it is not, then 
   def in_many_words
-    multiple_of_magnitude? ? multiple_of_magnitude_in_words : long_number_in_words
-  end
-
-  # Integer % magnitude
-  def multiple_of_magnitude?
-    integer % magnitude == 0
-  end
-
-  def in_range?
-    integer > LOWER_BOUND && integer <= UPPER_BOUND
+    (self % magnitude == 0) ? multiple_of_magnitude_in_words : long_number_in_words
   end
 
   # Order of magnitude followed but the magnitude word.
   def multiple_of_magnitude_in_words
-    [(integer / magnitude).in_words, magnitude_word].join(' ')
+    [(self / magnitude).in_words, magnitude_word].join(' ')
   end
 
-  # 
   def long_number_in_words
-puts " "
-puts "integer: #{integer}"
-puts "digits: #{digits}"
-puts "magnitude: #{magnitude}"
-# puts magnitude_part_and_remainder
-puts integer.divmod(magnitude).class
     magnitude_part_and_remainder.map(&:in_words).join(magnitude_separator)
   end
 
   # Returns an array containing the order of magnitude and remainder.
   def magnitude_part_and_remainder
-    quotient, remainder = integer.divmod(magnitude)
+    quotient, remainder = self.divmod(magnitude)
     [magnitude * quotient, remainder]
   end
 
@@ -65,12 +50,12 @@ puts integer.divmod(magnitude).class
   end
 
   # Calculate the order of magnitude, e.g. 
-  def order_of_magnitude
-    # return 1000 if (4..6).include?(digits)
-    # 10 ** (digits - 1)
-    10 ** digits - 1
+  def magnitude
+    return 1000 if (4..6).include?(digits)
+    10 ** (digits - 1)
   end
 
+  # Choose the correct separator between words
   def magnitude_separator
     (remainder(magnitude) < 100 && magnitude > 10) ? ' and ' : ' '
   end
